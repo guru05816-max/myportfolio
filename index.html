@@ -1,0 +1,304 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guruprasanth | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#050810;--bg2:#0a0f1e;--accent:#00f5ff;--accent2:#7c3aed;--accent3:#f59e0b;--text:#e2e8f0;--muted:#64748b;}
+html{scroll-behavior:smooth;}
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none;}
+.cursor{position:fixed;width:12px;height:12px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.1s;box-shadow:0 0 20px var(--accent);}
+.cursor-ring{position:fixed;width:40px;height:40px;border:1px solid rgba(0,245,255,0.4);border-radius:50%;pointer-events:none;z-index:9998;transition:all 0.15s ease;}
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:0.4;}
+nav{position:fixed;top:0;width:100%;z-index:100;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,245,255,0.05);}
+.nav-logo{font-family:'Space Mono',monospace;font-size:1rem;color:var(--accent);letter-spacing:2px;}
+.nav-links{display:flex;gap:30px;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;transition:color 0.3s;}
+.nav-links a:hover{color:var(--accent);}
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 40px;gap:60px;position:relative;overflow:hidden;}
+.hero-grid{position:absolute;top:0;left:0;width:100%;height:100%;background-image:linear-gradient(rgba(0,245,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,245,255,0.03) 1px,transparent 1px);background-size:60px 60px;animation:gridMove 20s linear infinite;}
+@keyframes gridMove{0%{transform:translateY(0);}100%{transform:translateY(60px);}}
+.hero-glow{position:absolute;top:20%;right:10%;width:400px;height:400px;background:radial-gradient(circle,rgba(124,58,237,0.15),transparent 70%);border-radius:50%;animation:glowPulse 4s ease-in-out infinite;}
+@keyframes glowPulse{0%,100%{transform:scale(1);opacity:0.5;}50%{transform:scale(1.2);opacity:1;}}
+.hero-left{position:relative;z-index:2;}
+.hero-tag{font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--accent);letter-spacing:4px;text-transform:uppercase;margin-bottom:20px;animation:fadeUp 0.8s ease both;}
+.hero-name{font-size:clamp(2.5rem,5vw,5rem);font-weight:800;line-height:0.95;margin-bottom:20px;animation:fadeUp 0.8s ease 0.2s both;}
+.hero-name span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-role{font-size:1rem;color:var(--muted);max-width:400px;line-height:1.8;margin-bottom:40px;animation:fadeUp 0.8s ease 0.4s both;}
+.hero-btns{display:flex;gap:15px;flex-wrap:wrap;animation:fadeUp 0.8s ease 0.6s both;}
+.hero-right{position:relative;z-index:2;display:flex;justify-content:center;align-items:center;animation:fadeUp 0.8s ease 0.3s both;}
+.photo-frame{position:relative;width:380px;height:480px;}
+.photo-frame::before{content:'';position:absolute;top:-15px;left:-15px;right:15px;bottom:15px;border:2px solid var(--accent);opacity:0.4;z-index:0;}
+.photo-frame::after{content:'';position:absolute;top:15px;left:15px;right:-15px;bottom:-15px;border:1px solid var(--accent2);opacity:0.3;z-index:0;}
+.photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;position:relative;z-index:1;filter:grayscale(20%) contrast(1.1);transition:filter 0.4s;}
+.photo-frame:hover img{filter:grayscale(0%) contrast(1);}
+.photo-tag{position:absolute;bottom:-20px;right:-20px;background:var(--accent);color:var(--bg);font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:2px;padding:10px 15px;z-index:2;font-weight:700;}
+.photo-line{position:absolute;top:20px;left:-40px;width:30px;height:1px;background:var(--accent);opacity:0.6;z-index:2;}
+.btn-primary{padding:14px 30px;background:var(--accent);color:var(--bg);border:none;font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:1px;cursor:none;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:all 0.3s;}
+.btn-primary:hover{background:var(--accent2);color:white;transform:translateY(-2px);}
+.btn-secondary{padding:14px 30px;background:transparent;color:var(--accent);border:1px solid var(--accent);font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:1px;cursor:none;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:all 0.3s;}
+.btn-secondary:hover{background:rgba(0,245,255,0.1);transform:translateY(-2px);}
+.hero-scroll{position:absolute;bottom:40px;left:40px;font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--muted);letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:15px;}
+.hero-scroll::after{content:'';width:50px;height:1px;background:var(--muted);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+section{padding:100px 40px;position:relative;}
+.section-label{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--accent);letter-spacing:4px;text-transform:uppercase;margin-bottom:15px;}
+.section-title{font-size:clamp(2rem,4vw,3.5rem);font-weight:800;margin-bottom:60px;line-height:1.1;}
+#about{background:var(--bg2);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1000px;}
+.about-text p{color:var(--muted);line-height:1.9;margin-bottom:20px;font-size:1rem;}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.stat-box{padding:25px;border:1px solid rgba(0,245,255,0.1);background:rgba(0,245,255,0.02);transition:all 0.3s;}
+.stat-box:hover{border-color:var(--accent);background:rgba(0,245,255,0.05);transform:translateY(-5px);}
+.stat-num{font-size:2.5rem;font-weight:800;color:var(--accent);font-family:'Space Mono',monospace;}
+.stat-label{font-size:0.8rem;color:var(--muted);margin-top:5px;letter-spacing:1px;}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:1000px;}
+.skill-card{padding:30px;border:1px solid rgba(255,255,255,0.05);background:rgba(255,255,255,0.02);position:relative;overflow:hidden;transition:all 0.3s;}
+.skill-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--accent);transition:height 0.4s;}
+.skill-card:hover::before{height:100%;}
+.skill-card:hover{border-color:rgba(0,245,255,0.2);transform:translateX(5px);background:rgba(0,245,255,0.03);}
+.skill-icon{font-size:2rem;margin-bottom:15px;}
+.skill-name{font-size:1.1rem;font-weight:700;margin-bottom:8px;}
+.skill-desc{font-size:0.85rem;color:var(--muted);line-height:1.6;}
+.skill-bar{margin-top:15px;height:2px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden;}
+.skill-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;}
+#projects{background:var(--bg2);}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;max-width:1000px;}
+
+/* PROJECT CARD - CLICKABLE */
+.project-card{
+border:1px solid rgba(255,255,255,0.05);
+overflow:hidden;position:relative;
+transition:all 0.4s;background:rgba(255,255,255,0.02);
+text-decoration:none;color:var(–text);
+display:block;cursor:none;
+}
+.project-card:hover{border-color:rgba(0,245,255,0.3);transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,245,255,0.08);}
+.project-header{padding:30px 30px 0;display:flex;justify-content:space-between;align-items:flex-start;}
+.project-num{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(–muted);letter-spacing:2px;}
+.project-tag{font-size:0.65rem;padding:4px 10px;border:1px solid var(–accent3);color:var(–accent3);letter-spacing:1px;text-transform:uppercase;}
+.project-body{padding:20px 30px 30px;}
+.project-title{font-size:1.3rem;font-weight:800;margin-bottom:10px;}
+.project-desc{font-size:0.85rem;color:var(–muted);line-height:1.7;margin-bottom:20px;}
+.project-techs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+.tech{font-family:'Space Mono',monospace;font-size:0.65rem;padding:4px 10px;background:rgba(0,245,255,0.05);border:1px solid rgba(0,245,255,0.15);color:var(–accent);letter-spacing:1px;}
+.project-link{
+display:inline-flex;align-items:center;gap:8px;
+font-family:'Space Mono',monospace;font-size:0.75rem;
+color:var(–accent);letter-spacing:1px;
+border-top:1px solid rgba(255,255,255,0.05);
+padding-top:15px;width:100%;
+transition:gap 0.3s;
+}
+.project-card:hover .project-link{gap:15px;}
+.project-no-link{
+display:inline-flex;align-items:center;gap:8px;
+font-family:'Space Mono',monospace;font-size:0.75rem;
+color:var(–muted);letter-spacing:1px;
+border-top:1px solid rgba(255,255,255,0.05);
+padding-top:15px;width:100%;
+}
+
+.contact-wrap{max-width:700px;}
+.contact-intro{font-size:1rem;color:var(–muted);line-height:1.9;margin-bottom:50px;}
+.contact-links{display:flex;flex-direction:column;gap:20px;}
+.contact-item{display:flex;align-items:center;gap:20px;padding:20px 25px;border:1px solid rgba(255,255,255,0.05);background:rgba(255,255,255,0.02);text-decoration:none;color:var(–text);transition:all 0.3s;}
+.contact-item:hover{border-color:var(–accent);background:rgba(0,245,255,0.05);transform:translateX(10px);}
+.contact-icon{font-size:1.5rem;width:40px;}
+.contact-label{font-size:0.7rem;color:var(–muted);letter-spacing:2px;text-transform:uppercase;}
+.contact-value{font-size:1rem;font-weight:700;margin-top:3px;}
+.contact-arrow{margin-left:auto;color:var(–accent);font-size:1.2rem;}
+footer{padding:40px;border-top:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+.footer-text{font-size:0.8rem;color:var(–muted);}
+.footer-accent{color:var(–accent);}
+@media(max-width:768px){
+nav{padding:15px 20px;}.nav-links{display:none;}
+#hero{grid-template-columns:1fr;padding:100px 20px 60px;text-align:center;}
+.hero-right{order:-1;}.photo-frame{width:260px;height:340px;}
+.hero-btns{justify-content:center;}.hero-scroll{display:none;}
+section{padding:70px 20px;}.about-grid{grid-template-columns:1fr;}
+footer{padding:30px 20px;}
+}
+.reveal{opacity:0;transform:translateY(40px);transition:all 0.8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+</style>
+
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <div class="nav-logo">GP_</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-left">
+    <div class="hero-tag">Available for work</div>
+    <h1 class="hero-name">Guru<br><span>Prasanth</span></h1>
+    <p class="hero-role">Python Developer · Web Developer · Visual Creator<br>B.Com Graduate | St. Joseph's College</p>
+    <div class="hero-btns">
+      <a href="#projects"><button class="btn-primary">View Projects →</button></a>
+      <a href="#contact"><button class="btn-secondary">Contact Me</button></a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="photo-frame">
+      <div class="photo-line"></div>
+      <img src="IMG_2262.jpeg" alt="Guruprasanth">
+      <div class="photo-tag">GURUPRASANTH</div>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<section id="about">
+  <div class="section-label">01 / About</div>
+  <h2 class="section-title">Who I Am</h2>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>I'm Guruprasanth, a B.Com graduate from St. Joseph's College of Arts and Science, passionate about building things on the web and automating tasks with Python.</p>
+      <p>Beyond coding, I have a strong creative side -- I love photography and cinematic video editing, which gives me a unique eye for design and detail in everything I build.</p>
+      <p>I'm currently seeking opportunities where I can grow as a developer and contribute to meaningful projects.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-box"><div class="stat-num">3+</div><div class="stat-label">Skills Mastered</div></div>
+      <div class="stat-box"><div class="stat-num">3+</div><div class="stat-label">Projects Built</div></div>
+      <div class="stat-box"><div class="stat-num">B.Com</div><div class="stat-label">Graduate</div></div>
+      <div class="stat-box"><div class="stat-num">100%</div><div class="stat-label">Dedication</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-label">02 / Skills</div>
+  <h2 class="section-title">What I Do</h2>
+  <div class="skills-grid">
+    <div class="skill-card reveal"><div class="skill-icon">🐍</div><div class="skill-name">Python</div><div class="skill-desc">Automation, scripting, and building backend logic with Python.</div><div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">🌐</div><div class="skill-name">Web Development</div><div class="skill-desc">Building responsive websites using HTML & CSS with clean design.</div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">📊</div><div class="skill-name">Tally</div><div class="skill-desc">Accounting and financial management using Tally software.</div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">📸</div><div class="skill-name">Photography</div><div class="skill-desc">Creative photography with a strong eye for composition and lighting.</div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">🎬</div><div class="skill-name">Video Editing</div><div class="skill-desc">Cinematic video editing and storytelling through visuals.</div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+    <div class="skill-card reveal"><div class="skill-icon">✂️</div><div class="skill-name">Photo Editing</div><div class="skill-desc">Professional photo retouching and creative editing.</div><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-label">03 / Projects</div>
+  <h2 class="section-title">What I've Built</h2>
+  <div class="projects-grid">
+
+```
+<a class="project-card reveal" href="https://guru05816-max.github.io/login-lamp-ui/" target="_blank">
+  <div class="project-header">
+    <span class="project-num">001</span>
+    <span class="project-tag">Web</span>
+  </div>
+  <div class="project-body">
+    <div class="project-title">Login Lamp UI</div>
+    <div class="project-desc">A creative login page UI with unique lamp-inspired design, smooth animations and interactive elements. Built with pure HTML, CSS & JavaScript.</div>
+    <div class="project-techs">
+      <span class="tech">HTML</span><span class="tech">CSS</span><span class="tech">JavaScript</span>
+    </div>
+    <div class="project-link">🔗 View Live Project →</div>
+  </div>
+</a>
+
+<a class="project-card reveal" href="https://guru05816-max.github.io/openpaniparu/" target="_blank">
+  <div class="project-header">
+    <span class="project-num">002</span>
+    <span class="project-tag">Web</span>
+  </div>
+  <div class="project-body">
+    <div class="project-title">Birthday Surprise Website</div>
+    <div class="project-desc">An interactive birthday surprise with animations, photo carousel, cake-cutting interaction, fireworks and background music. Deployed on GitHub Pages.</div>
+    <div class="project-techs">
+      <span class="tech">HTML</span><span class="tech">CSS</span><span class="tech">JavaScript</span><span class="tech">GitHub Pages</span>
+    </div>
+    <div class="project-link">🔗 View Live Project →</div>
+  </div>
+</a>
+
+<div class="project-card reveal">
+  <div class="project-header">
+    <span class="project-num">003</span>
+    <span class="project-tag">Creative</span>
+  </div>
+  <div class="project-body">
+    <div class="project-title">Cinematic Video Projects</div>
+    <div class="project-desc">Produced and edited multiple cinematic short films and reels, combining photography, storytelling and visual effects for creative content.</div>
+    <div class="project-techs">
+      <span class="tech">Video Editing</span><span class="tech">Photography</span><span class="tech">Color Grading</span>
+    </div>
+    <a href="https://www.instagram.com/_heyy_itz_me_berry?igsh=aXl5c3ZpMDU1bWF6" target="_blank" class="project-link">📸 View on Instagram →</a>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-label">04 / Contact</div>
+  <h2 class="section-title">Let's Connect</h2>
+  <div class="contact-wrap reveal">
+    <p class="contact-intro">I'm actively looking for opportunities. Whether you have a project, a job opening, or just want to say hi -- my inbox is always open.</p>
+    <div class="contact-links">
+      <a class="contact-item" href="mailto:guru05816@gmail.com">
+        <span class="contact-icon">📧</span>
+        <div><div class="contact-label">Email</div><div class="contact-value">guru05816@gmail.com</div></div>
+        <span class="contact-arrow">→</span>
+      </a>
+      <a class="contact-item" href="tel:6382831155">
+        <span class="contact-icon">📱</span>
+        <div><div class="contact-label">Phone</div><div class="contact-value">+91 63828 31155</div></div>
+        <span class="contact-arrow">→</span>
+      </a>
+      <a class="contact-item" href="https://www.instagram.com/_heyy_itz_me_berry" target="_blank">
+        <span class="contact-icon">📸</span>
+        <div><div class="contact-label">Instagram</div><div class="contact-value">@_heyy_itz_me_berry</div></div>
+        <span class="contact-arrow">→</span>
+      </a>
+      <a class="contact-item" href="https://github.com/guru05816-max" target="_blank">
+        <span class="contact-icon">💻</span>
+        <div><div class="contact-label">GitHub</div><div class="contact-value">github.com/guru05816-max</div></div>
+        <span class="contact-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-text">© 2026 <span class="footer-accent">Guruprasanth</span> -- All rights reserved</div>
+  <div class="footer-text">Built with <span class="footer-accent">HTML · CSS · JS</span></div>
+</footer>
+
+<script>
+const cursor=document.getElementById('cursor');
+const ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx-6+'px';cursor.style.top=my-6+'px';});
+function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx-20+'px';ring.style.top=ry-20+'px';requestAnimationFrame(animRing);}
+animRing();
+document.querySelectorAll('button,a,.skill-card,.project-card,.contact-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2)';ring.style.transform='scale(1.5)';});
+  el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';ring.style.transform='scale(1)';});
+});
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
